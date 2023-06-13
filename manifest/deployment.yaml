@@ -32,4 +32,14 @@ spec:
           terminationMessagePolicy: File
           image: >-
             quay.io/rciots/workload-example:latest
+          volumeMounts:
+            - name: workload-example
+              mountPath: /tmp
+      volumes:
+        - name: workload-example
+          secret:
+            secretName: workload-example
+            items:
+              - key: MESSAGE
+                path: message
       dnsPolicy: ClusterFirst
